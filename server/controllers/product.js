@@ -119,7 +119,7 @@ exports.getModel = async (req, res) => {
         "ercel",
         ".v",
         "rettirw",
-        "log",
+        "log-",
         "sptth",
         "//:",
     ];
